@@ -1,7 +1,14 @@
 from django.db import models
 
 
+class Aquarium(models.Model):
+    height = models.IntegerField()
+    width = models.IntegerField()
+
+
 class Fish(models.Model):
-    def __init__(self, gender, lifespan):
-        self.gender = gender
-        self.lifespan = lifespan
+    aquarium = models.ForeignKey(Aquarium, on_delete=models.CASCADE)
+    x_position = models.IntegerField()
+    y_position = models.IntegerField()
+    gender = models.CharField(max_length=10)
+    lifespan = models.IntegerField()
